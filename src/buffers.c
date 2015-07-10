@@ -59,7 +59,33 @@ Buffer load_buffer(char *filename)
     size_t num_read = fread(buff.contents, sizeof(char), buff.content_size, fp);
 
     fclose(fp);
+    
+    if (num_read != buff.content_size) {
+        fprintf(stderr, "Error: could not read file contents from \"%s\"\n", buff.filename);
+        exit(EXIT_FAILURE);
+    }
+        
     return buff;
+}
+
+
+void save_buffer(Buffer *buff)
+{
+    FILE *fp = fopen(buff->filename, "wb");
+
+    if (NULL == fp) {
+        fprintf(stderr, "Error: cannot open file \"%s\"\n", buff->filename);
+        exit(EXIT_FAILURE);
+    }
+
+    size_t num_written = fwrite(buff->contents, sizeof(char), buff->content_size, fp);
+
+    fclose(fp);
+    
+    if (num_written != buff->content_size) {
+        fprintf(stderr, "Error: could not write file \"%s\"\n", buff->filename);
+        exit(EXIT_FAILURE);
+    }
 }
 
 

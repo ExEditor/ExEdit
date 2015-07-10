@@ -50,6 +50,16 @@ Buffer load_buffer(char *filename);
 
 
 /*
+  Attempt to save the contents of the buffer to its corresponding file.
+
+  Preconditions: Valid buffer from a file.
+  Postconditions: Overwrites file's data. May exit if the file can not be opened.
+ */
+
+void save_buffer(Buffer *buff);
+
+
+/*
   Print the buffer's contents to stdout.
 
   Preconditions: Buffer should contain valid data.
