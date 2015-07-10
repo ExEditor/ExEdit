@@ -136,8 +136,9 @@ void buffer_shift(Buffer *buffer, size_t pos, ssize_t offset)
     }
     else if (offset > 0) {
         /* Copy portion of the buffer that we want to shift */
-        size_t chunk_size = pos - buffer->content_size;
+        size_t chunk_size = buffer->content_size - pos;
         char *chunk = calloc(chunk_size, sizeof(char));
+
         strncpy(chunk, buffer->contents + pos, chunk_size);
         
         /* Need to resize, because we're shifting right */
