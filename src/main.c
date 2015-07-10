@@ -10,6 +10,9 @@ int main(int argc, char *argv[])
     }
     
     Buffer buff = load_buffer(argv[1]);
+
+    display_buffer(&buff);
+    insert_char(&buff, 0, 'f');
     display_buffer(&buff);
 
     return 0;
