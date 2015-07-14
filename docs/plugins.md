@@ -3,10 +3,10 @@
 The following functions must be provided by any plugin loaded by ExEd.
 
 ## Initializing the Plugin
-    plugin_init(ExEd_Plugin *plugin)
+    int plugin_init(ExEd_Plugin *plugin)
 
 ## Cleaning up
-	plugin_exit(ExEd_Plugin *plugin)
+	int plugin_exit(ExEd_Plugin *plugin)
 
 ## Registering Commands and Modes
 
