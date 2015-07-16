@@ -41,6 +41,7 @@ typedef struct ExEd_Plugin {
     /* Plugin commands */
 } ExEd_Plugin;
 
+
 /* Load plugins dynamically.
 
    init and exit will be NULL on failures.
