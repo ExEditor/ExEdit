@@ -32,6 +32,7 @@ typedef struct ExEd_Plugin {
     char *name; /* Name of the plugin */
     char *description; /* Description of the plugin */
     char *author; /* Author of the plugin */
+    char *author_email; /* Contact information for author */
 
     /* Entry points */
     int (*init)(struct ExEd_Plugin*);
