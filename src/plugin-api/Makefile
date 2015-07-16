@@ -1,8 +1,8 @@
 CFLAGS := -fPIC
 
-all: exed-plugins.so
+all: libexed-plugins.so
 
-exed-plugins.so: plugins.o
+libexed-plugins.so: plugins.o
 	${CC} -shared $^ -o $@
 
 plugins.o: plugins.c plugins.h

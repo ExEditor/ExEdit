@@ -1,15 +1,16 @@
-CFLAGS="-g"
 PLUGIN_API_DIR="./plugin-api/"
+CFLAGS := -fPIC -I ${PLUGIN_API_DIR}
+LDFLAGS := -L ${PLUGIN_API_DIR} -l"exed-plugins" -ldl
 
 all: exed plugin-api
 
 plugin-api:
 	make -C ${PLUGIN_API_DIR}
 
-exed: main.c buffers.o
-	${CC} $^ -o $@ ${CFLAGS}
+exed: main.o buffers.o
+	${CC} $^ -o $@ ${LDFLAGS}
 
-buffers.o: buffers.c buffers.h
+%.o: %.c %.h
 	${CC} -c $< -o $@ ${CFLAGS}
 
 clean:

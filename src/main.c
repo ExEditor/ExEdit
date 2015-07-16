@@ -23,9 +23,11 @@
 
  */
 
+#include "buffers.h"
+
+#include <plugins.h>
 #include <stdio.h>
 
-#include "buffers.h"
 
 int main(int argc, char *argv[])
 {
@@ -33,6 +35,10 @@ int main(int argc, char *argv[])
         printf("usage: %s <filename>\n", argv[0]);
         return -1;
     }
+
+    ExEd_Plugin plugin = load_plugin("./plugins/tests/test1.so");
+
+    plugin.commands[0].callback(NULL);
     
     Buffer buff = load_buffer(argv[1]);
 
