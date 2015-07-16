@@ -1,2 +1,2 @@
-# Experedit
-Experimental text editor. Not really meant to be a finished product, but a test of some ideas.
+# ExEdit
+An experimental extensible text editor. Not really meant to be a finished product (yet), but a test of some ideas.
