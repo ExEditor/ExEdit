@@ -26,6 +26,17 @@
 #ifndef PLUGINS_H
 #define PLUGINS_H
 
+#include <stdlib.h>
+
+
+/* Structure for commands in a plugin */
+typedef struct ExEd_Command {
+    const char *command;  /* Name of the command */
+    const char *description;  /* Description of the command */
+    int (*callback)(void *data);
+} ExEd_Command;
+
+
 /* Structure for plugins */
 typedef struct ExEd_Plugin {
     const char *path; /* Path for the dynamic library which has been loaded */
@@ -39,6 +50,8 @@ typedef struct ExEd_Plugin {
     int (*exit)(struct ExEd_Plugin*);
 
     /* Plugin commands */
+    ExEd_Command *commands;
+    size_t num_commands;
 } ExEd_Plugin;
 
 
@@ -47,5 +60,12 @@ typedef struct ExEd_Plugin {
    init and exit will be NULL on failures.
  */
 ExEd_Plugin load_plugin(const char *path);
+
+
+/* Register a command in a plugin.
+
+   Returns 0 on success, and -1 on failure.
+ */
+int plugin_register_command(ExEd_Plugin *plugin, const char *command, const char *description, int (*callback)(void *data));
 
 #endif

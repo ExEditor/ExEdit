@@ -39,6 +39,8 @@ ExEd_Plugin load_plugin(const char *path)
     plugin.author = "";
     plugin.init = NULL;
     plugin.exit = NULL;
+    plugin.commands = NULL;
+    plugin.num_commands = 0;
 
     /* Attempt dynamic loading of the plugin */
     void *handle = dlopen(path, RTLD_LAZY | RTLD_LOCAL);
@@ -70,4 +72,25 @@ ExEd_Plugin load_plugin(const char *path)
     }
 
     return plugin;
+}
+
+
+int plugin_register_command(ExEd_Plugin *plugin, const char *command, const char *description, int (*callback)(void *data))
+{
+    size_t num_new = plugin->num_commands + 1;
+    plugin->commands = realloc(plugin->commands, num_new * sizeof(ExEd_Command));
+
+    if (NULL == plugin->commands) {
+        return -1;
+    }
+
+    ExEd_Command new_command;
+    new_command.command = command;
+    new_command.description = description;
+    new_command.callback = callback;
+
+    plugin->commands[plugin->num_commands] = new_command;
+    plugin->num_commands = num_new;
+    
+    return 0;
 }
