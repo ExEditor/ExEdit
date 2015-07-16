@@ -1,18 +1,19 @@
 CFLAGS="-g"
+PLUGIN_API_DIR="./plugin-api/"
 
-all: exed
+all: exed plugin-api
 
-exed: main.c buffers.o plugins.o
+plugin-api:
+	make -C ${PLUGIN_API_DIR}
+
+exed: main.c buffers.o
 	${CC} $^ -o $@ ${CFLAGS}
 
 buffers.o: buffers.c buffers.h
-	${CC} -c $< -o $@ ${CFLAGS}
-
-plugins.o: plugins.c plugins.h
 	${CC} -c $< -o $@ ${CFLAGS}
 
 clean:
 	${RM} *\.o
 	${RM} exed
 
-.PHONY: all clean
+.PHONY: all clean plugin-api
