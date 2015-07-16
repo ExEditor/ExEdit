@@ -29,6 +29,8 @@
 
 int command(void *data)
 {
+    printf("Test command!\n");
+    
     /* Command finished successfully */
     return 0;
 }
