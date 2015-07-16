@@ -20,7 +20,7 @@ A mode will often be associated with a certain type of file (usually by file ext
 
 Every action in ExEd should be grouped with a named command. The name of this command should be as descriptive as possible, and conceivably might be entered manually by a user (either to execute the command, or look up information about the command).
 
-    plugin_register_command(ExEd_Plugin *plugin)
+    plugin_register_command(ExEd_Plugin *plugin, const char *command, const char *description, int (callback*)(void *data))
 
 Each registered command will be in the scope of the plugin. When a command is called globally it will search for all of the commands in the plugins that are currently loaded that match, and probably select the command from the first loaded plugin by default.
 
