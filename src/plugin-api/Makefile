@@ -10,6 +10,6 @@ plugins.o: plugins.c plugins.h
 
 clean:
 	${RM} *\.o
-	${RM} exed
+	${RM} *\.so
 
 .PHONY: all clean
