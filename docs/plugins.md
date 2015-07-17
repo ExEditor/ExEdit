@@ -6,7 +6,9 @@ ExEd may be extended through the use of plugins. These plugins are dynamic libra
 
 When ExEd loads a plugin it initializes it by calling
 
-    int plugin_init(ExEd_Plugin *plugin)
+```c
+int plugin_init(ExEd_Plugin *plugin)
+```
 
 This function must be provided by each plugin, and can be used to set up anything that the plugin needs.
 
@@ -14,7 +16,9 @@ This function must be provided by each plugin, and can be used to set up anythin
 
 When a plugin is unloaded from ExEd the following function, which must be provided by each plugin is called
 
-	int plugin_exit(ExEd_Plugin *plugin)
+```c
+int plugin_exit(ExEd_Plugin *plugin)
+```
 
 This function may be used to perform any necessary cleanup, such as freeing any memory or file descriptors allocated by the plugin.
 
@@ -30,7 +34,9 @@ A mode will often be associated with a certain type of file (usually by file ext
 
 Every action in ExEd should be grouped with a named command. The name of this command should be as descriptive as possible, and conceivably might be entered manually by a user (either to execute the command, or look up information about the command).
 
-    plugin_register_command(ExEd_Plugin *plugin, const char *command, const char *description, int (callback*)(void *data))
+```c
+plugin_register_command(ExEd_Plugin *plugin, const char *command, const char *description, int (callback*)(void *data))
+```
 
 Each registered command will be in the scope of the plugin. When a command is called globally it will search for all of the commands in the plugins that are currently loaded that match, and probably select the command from the first loaded plugin by default.
 
