@@ -1,4 +1,4 @@
-CFLAGS := -fPIC
+CFLAGS := -fPIC -std=c99
 
 all: libexed-plugins.so
 

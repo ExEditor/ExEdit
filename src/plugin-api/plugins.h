@@ -68,4 +68,16 @@ ExEd_Plugin load_plugin(const char *path);
  */
 int plugin_register_command(ExEd_Plugin *plugin, const char *command, const char *description, int (*callback)(void *data));
 
+
+/* Display plugin information.
+
+ */
+void plugin_display(ExEd_Plugin *plugin);
+
+
+/* Display command information.
+
+ */
+void command_display(ExEd_Command *command);
+
 #endif

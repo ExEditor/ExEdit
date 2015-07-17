@@ -38,6 +38,7 @@ int main(int argc, char *argv[])
 
     ExEd_Plugin plugin = load_plugin("./plugins/tests/test1.so");
 
+    plugin_display(&plugin);
     plugin.commands[0].callback(NULL);
     
     Buffer buff = load_buffer(argv[1]);

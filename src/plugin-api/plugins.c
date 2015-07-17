@@ -37,6 +37,7 @@ ExEd_Plugin load_plugin(const char *path)
     plugin.name = "";
     plugin.description = "";
     plugin.author = "";
+    plugin.author_email = "";
     plugin.init = NULL;
     plugin.exit = NULL;
     plugin.commands = NULL;
@@ -93,4 +94,32 @@ int plugin_register_command(ExEd_Plugin *plugin, const char *command, const char
     plugin->num_commands = num_new;
     
     return 0;
+}
+
+
+void plugin_display(ExEd_Plugin *plugin)
+{
+    const char *sep;
+    if (plugin->author[0] == '\0' || plugin->author_email == '\0') {
+        sep = " - ";
+    }
+    else {
+        sep = "";
+    }
+    
+    printf("%s (%s%s%s):\n", plugin->name, plugin->author, sep, plugin->author_email);
+    printf("%s\n", plugin->description);
+
+    for (size_t i = 0; i < plugin->num_commands; ++i) {
+        printf("\t");
+        command_display(&plugin->commands[i]);
+    }
+
+    printf("\n");
+}
+
+
+void command_display(ExEd_Command *command)
+{
+    printf("%s: %s\n", command->command, command->description);
 }

@@ -41,6 +41,7 @@ int plugin_init(ExEd_Plugin *plugin)
     plugin->name = "test1";
     plugin->description = "Testing registration of plugins!";
     plugin->author = "Calvin Beck";
+    plugin->author_email = "";
 
     plugin_register_command(plugin,
                             "test",
